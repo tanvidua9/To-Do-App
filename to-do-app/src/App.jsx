@@ -43,13 +43,12 @@ function App() {
       localStorage.setItem("completedTodos", JSON.stringify(updatedCompleted));
       return updatedCompleted;
     });
-
     localStorage.setItem("todos", JSON.stringify(remainingTodos));
   };
 
 
    const handleRefresh = () => {
-     const completedIds = sampleTasksDone.map(task => task.id);
+    const completedIds = sampleTasksDone.map(task => task.id);
     const remainingTodos = todos.filter(todo => !completedIds.includes(todo.id));
 
     setTodos(remainingTodos);
@@ -70,12 +69,18 @@ function App() {
     localStorage.setItem("To-do", JSON.stringify([...todos, restored]));
   };
 
+  const removeTodo = (id) => {
+    const updated= todos.filter((todo)=> todo.id!==id);
+    setTodos(updated);
+    localStorage.setItem("To-do", JSON.stringify(updated));
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
       <main className="flex flex-col px-4 sm:px-10 md:px-20 pt-6 pb-20 gap-6 flex-1">
         <Refresh handleRefresh={handleRefresh}/>
-        <Tasks todos={todos} addTodo={addTodo} completeTodo={completeTodo} />
+        <Tasks todos={todos} addTodo={addTodo} completeTodo={completeTodo} removeTodo={removeTodo} />
         <CompletedTasks completedTodos={completedTodos} restoreTodo={restoreTodo} />
       </main>
     </div>

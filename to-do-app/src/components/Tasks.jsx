@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 
-function Tasks({ todos, addTodo, completeTodo}) {
+
+function Tasks({ todos, addTodo, completeTodo, removeTodo}) {
     const [createTodo, setCreateTodo]= useState(false);
     const [inputValue, setInputValue] = useState("");
 
@@ -33,6 +35,7 @@ function Tasks({ todos, addTodo, completeTodo}) {
                 <div key={index} className="flex items-center gap-2">
                     <input type="checkbox" onChange={() => completeTodo(index)}/>
                     <span>{todo.text}</span>
+                    <button onClick={()=>removeTodo(todo.id)} className="text-yellow-600 text-xl "><FaTimes /></button>
                 </div>
             ))}
         </div>
