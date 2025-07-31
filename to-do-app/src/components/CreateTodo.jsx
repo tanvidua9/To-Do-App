@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 
-function CreateTodoForm({addTodo, onCancel}){
+function CreateTodoForm({addTodo, onCancel, onSave}){
      const [inputValue, setInputValue] = useState("");
 
      const handleInputChange=(event)=>{
@@ -10,7 +10,7 @@ function CreateTodoForm({addTodo, onCancel}){
     const handleSaveTodo = () => {
         addTodo(inputValue);
         setInputValue("");
-        setCreateTodo(false);
+        onSave();
     };
 
    function handleCancelTodo() {

@@ -14,6 +14,11 @@ function Tasks({ todos, addTodo, completeTodo, removeTodo}) {
         setCreateTodo(false);
     }
 
+    const handleSaveTodo = () => {
+        setCreateTodo(false);
+    };
+
+
   
   return (
     <div className="flex flex-col gap-4">
@@ -35,7 +40,7 @@ function Tasks({ todos, addTodo, completeTodo, removeTodo}) {
           </button>
         )}
 
-        {createTodo && (<CreateTodoForm addTodo={addTodo} onCancel={handleCancelTodo} />)}
+        {createTodo && (<CreateTodoForm addTodo={addTodo} onCancel={handleCancelTodo} onSave={handleSaveTodo} />)}
 
     </div>
   );
